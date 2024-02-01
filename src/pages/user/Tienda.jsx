@@ -1,12 +1,13 @@
+import Footer from "../../components/Footer/Footer"
 import Navbar from "../../components/Navbar/Navbar"
+import SearchProducts from "../../components/SearchProducts"
 
 function Tienda() {
   return (
     <div>
-
       <Navbar />
-
-      Tienda
+      <SearchProducts />
+      <Footer />
     </div>
   )
 }

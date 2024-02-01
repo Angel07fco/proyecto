@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import './NavbarStyle.css';
 
@@ -10,13 +9,13 @@ export const Nav = ({to, children, ...props}) => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 120, damping: 15, delay: 0.4 }}
         >
-            <Link 
+            <a 
                 {...props}
                 className={({isActive}) => isActive ? 'active' : undefined}
-                to={to}
+                href={to}
             >
                 {children}
-            </Link>
+            </a>
         </motion.li>
         
     )

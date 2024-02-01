@@ -1,0 +1,68 @@
+.section {
+    margin-top: 50px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.groupInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.inputContainer {
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+}
+
+.input {
+    width: 100%;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px; /* Agrega un pequeño espacio entre el TextField y el mensaje de error */
+}
+
+.button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.section-login {
+    margin-top: 50px;
+    width: 35%;
+    margin-left: 32.5%;
+}
+
+.section-login .input {
+    margin-top: 20px;
+}
+
+.msjError {
+    background-color: #EF4444;
+    padding: 0.5rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.msjSuccess {
+    background-color: green;
+    padding: 0.5rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+    .section {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .section-login {
+        width: 80%;
+        margin-left: 10%;
+    }
+}

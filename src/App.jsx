@@ -1,5 +1,5 @@
 import './App.css';
-import Rutas from './pruebas/Rutas';
+import Rutas from './routes/Rutas';
 
 function App() {
   return (

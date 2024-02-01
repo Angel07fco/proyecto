@@ -1,15 +1,26 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Nav } from './Nav';
 import './NavbarStyle.css';
 import Logo from '../../assets/images/logo.png';
 import { TextField } from  '@mui/material'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useAuth } from "../../context/AuthContext";
 
 function Navbar() {
-  
+    const {user} = useAuth();
     const [click, setClick] = useState(false);
+
+    const [isLogout, setIsLogout] = useState(false);
+    const [message, setMessage] = useState("")
+    useEffect(() => {
+        if (user !== null) {
+            setIsLogout(true);
+            setMessage(user.email);
+        }
+    }, [user]);
+
 
     const toggleClick = () => {
         setClick(!click);
@@ -17,7 +28,7 @@ function Navbar() {
 
     return (
         <>
-            <motion.header 
+            <motion.header
                 id='navS'
                 initial={{ opacity: 0, translateY: -100 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -36,16 +47,23 @@ function Navbar() {
                     />
                 </div>
                 <div id='navS-3'>
-                    <div className='one'>
-                        <Nav to='/'>Crear cuenta</Nav>
-                        <Nav to='/'>Iniciar Sesión</Nav>
-                    </div>
+                    {isLogout === false
+                        ?
+                            <div className='one'>
+                                <Nav to='/register'>Crear cuenta</Nav>
+                                <Nav to='/login'>Iniciar Sesión</Nav>
+                            </div>
+                        :
+                            <div className='one'>
+                                <h5>Bienvenido {message}</h5>
+                            </div>
+                    }
                     <div className='two'>
-                        <Nav style={{display: 'flex', alignItems: 'center'}}>
+                        <Nav to='/' style={{display: 'flex', alignItems: 'center'}}>
                             <AddShoppingCartIcon />
                             Mi Carrito
                         </Nav>
-                        <Nav style={{display: 'flex', alignItems: 'center'}}>
+                        <Nav to='/' style={{display: 'flex', alignItems: 'center'}}>
                             <AccountCircleOutlinedIcon />
                             Mi Cuenta
                         </Nav>
@@ -58,12 +76,12 @@ function Navbar() {
                 transition={{ type: 'spring', stiffness: 120, damping: 15 }}
                 className='nav'
             >
-                <ul id='navbar' className={click ? '#navbar active' : '#navbar'}>
+                <ul id='navbar' >*-
                     <Nav to='/'>Inicio</Nav>
                     <Nav to='/citas'>Citas</Nav>
                     <Nav to='/servicios'>Servicios</Nav>
                     <Nav to='/tienda'>Tienda</Nav>
-                    <Nav to='/nosotros'>Nosotros</Nav>
+                    <Nav to='/nosotros'>¿Quienes Somos?</Nav>
                     <Nav to='/contacto'>Contacto</Nav>
                 </ul>
                 <div id='mobile'>
@@ -72,6 +90,7 @@ function Navbar() {
                         onClick={toggleClick}
                         className={click ? 'fas fa-times' : 'fas fa-bars'}
                     ></i>
+                    <Nav to='/contacto'>Contacto</Nav>
                 </div>
             </motion.nav>
         </>
